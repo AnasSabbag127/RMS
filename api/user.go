@@ -1,21 +1,29 @@
 package api
+
 import (
 	"net/http"
 	"goPractice/model"
 	"encoding/json"
 	"goPractice/database"
-	"log"
 	"github.com/gorilla/mux"
+	"log"
 )
-//subadmin Routes
-func SubAdminRoutes(router *mux.Router) *mux.Router{
-	router.Handle("/create-users",http.HandlerFunc(CreateUserHandler)).Methods("POST")
-	router.Handle("/create-dish",http.HandlerFunc(CreateUserHandler)).Methods("POST")
-	router.Handle("/create-restraunt",http.HandlerFunc(CreateRestrauntHandler)).Methods("POST")
+//UserRoutes
+func UserRoutes(router *mux.Router) *mux.Router{
+	router.Handle("/get-all-restraunt",http.HandlerFunc(GetAllRestrauntHandler)).Methods("GET")
+	router.Handle("/get-all-dishes",http.HandlerFunc(GetAllDishesHandler)).Methods("GET")
 	return router
 }
 
-func CreateSubAdminHandler(w http.ResponseWriter,r *http.Request) {
+
+func GetAllRestrauntHandler(w http.ResponseWriter,r *http.Request){
+
+}
+func GetAllDishesHandler(w http.ResponseWriter,r *http.Request){
+	
+}
+
+func CreateUserHandler(w http.ResponseWriter,r *http.Request) {
 	var newUser model.InputUser
 	decoder := json.NewDecoder(r.Body)
 
@@ -50,4 +58,4 @@ func CreateSubAdminHandler(w http.ResponseWriter,r *http.Request) {
 	} 
 	w.Write(jsonResponse)
 
-}
+}	
